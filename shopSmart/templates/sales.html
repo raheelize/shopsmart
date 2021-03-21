@@ -1,0 +1,76 @@
+{% extends "baseRegistered.html" %}
+{% block title %}Sales{% endblock title %}
+{% block body %}
+
+<head>
+  <style>
+    .error {
+      background-color: blanchedalmond;
+      border-radius: 20px;
+      margin-top: 3%;
+      padding: 5%;
+    }
+
+    .row {
+      background-color: whitesmoke;
+      border-radius: 20px;
+
+    }
+
+    p {
+      color: black;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    a.hover {
+      background-color: black;
+    }
+  </style>
+</head>
+
+<body>
+  <section class=" container text-center shadow">
+    <h1 class="jumbotron-heading" style="color:blueviolet;"><b>ONGOING SALES</b></h1>
+  </section>
+</body>
+<main>
+  {%if sales|length < 1%} <div class="row">
+    <div class="col-12 text-center error">
+      <h3>Sorry, there is no ongoing sale on any brand!</h3>
+    </div>
+    </div>
+    {%endif%}
+
+    <div class="d-flex justify-content-center">
+      <div class="container">
+        {% for sale in sales %}
+
+        <div class="row shadow my-5 p-5 animate-bottom">
+          <div class="col-lg-10 col-sm-12 col-md-9">
+            <div class="catalog ">
+              <!--<a href="{{sale.sale_url}}">-->
+              <a href="#">
+                <h5>{{sale.catalog}}</h5>
+              </a>
+            </div>
+            <div class="description animate-bottom">
+              <p>{{sale.description}}</p>
+            </div>
+          </div>
+          <div class="col-lg-2 col-sm-12 col-md-9 animate-bottom">
+            <div class="d-flex justify-content-center">
+              <img class="rounded shadow" style="max-height: 250px; width: auto;" src="{{sale.img_url}}"
+                alt="sale image">
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+    </div>
+
+</main>
+{% endblock %}

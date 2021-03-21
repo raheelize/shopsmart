@@ -1,0 +1,68 @@
+{% extends base %}
+
+{% block title %}My Favorites{% endblock title %}
+
+{% block body %}
+
+
+  <section class=" container text-center shadow">
+    <h1 class="jumbotron-heading" style="color:blueviolet;"><b>My Favorites</b></h1>
+  </section>
+  {% if not items %}
+    <error style = "color:blueviolet;"class="container ">
+        <div class=" align-content-center">
+            <i class ="d-flex justify-content-center	far fa-frown-open " style='font-size:100px;' ></i>
+            <h2 style='font-size:50px' class="d-flex justify-content-center">Oops!</h2>
+            <h3 class="d-flex justify-content-center"> Seems like there's nothing your favorite.</h3>
+            
+            <h4 class="d-flex justify-content-center"> <a href="/all_products"><button class = "bt btn shadow" > Want to Explore?</button></a></h4>
+        </div>
+    </error>
+  {% endif %}
+  <div class="album py-5 animate-bottom">
+    <div class="container">
+      <div class="row">
+        {% for item in items %}
+        <div class="col-lg-3 col-md-6 col-sm-12 d-flex justify-content-center">
+          <div class="block shadow">
+
+            <div class="d-flex justify-content-center">
+              <a href="{{item.image_url}}">
+                <img class="image shadow" src="{{item.image_url}}" alt="{{item.title}}">
+              </a>
+            </div>
+
+            <div class="body">
+              <p class="title" style="color: blueviolet;"><b>{{item.title}}</b></p>
+              <p class="price"><b>PKR-{{item.price}}</b></p>
+
+              <div class="d-flex flex-row-reverse">
+                <small class="text-muted brand ">{{item.brand}}</small>
+              </div>
+
+              <div>
+                {% if not request.user.is_authenticated %}
+                <a href="{{item.item_url}}"><button type="button" class="btn pBtn px-4 form-control">View
+                    Product</button></a>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                <a href="{{item.item_url}}"><button type="button" class="btn pBtn px-3 rel form-control">View
+                    Product</button></a>
+                <form action="{{request.path}}" method="POST">
+                  {% csrf_token %}
+                  <input style="display:none;" type="text" name="product_id" value="{{item.item_id}}">
+                  <button type = "submit" title = "Remove From Favorites"  class="btn btn-danger fBtn float-right"><i class="fa fa-trash"></i></button>
+                </form>
+                {% endif %}
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  
+{% endblock body %}

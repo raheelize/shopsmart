@@ -1,0 +1,121 @@
+body {
+    background-image: url("static/login-bg.png");
+    /*background-image: url("https://source.unsplash.com/1600x900/?dark");*/
+    
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    color: blueviolet;
+}
+.wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+   
+    
+}
+a{
+    color:blueviolet;
+}
+
+.pBtn {
+    background-color: blueviolet;
+    color: whitesmoke;
+    border: 1px solid transparent;
+    border-radius: 20px;
+}
+.pBtn:hover {
+    background-color: whitesmoke;
+    color:blueviolet;
+    border-color: blueviolet;
+    border: 1px solid blueviolet !important; 
+}
+.sBtn{
+    background-color: whitesmoke;
+    color: blueviolet;
+    border-radius: 20px;
+}
+.sBtn:hover{
+    color: blueviolet;
+    border-color: blueviolet;
+    background-color:whitesmoke;
+}
+.fBtn{
+    background-color: #d9534f;
+    border: 1px solid #d9534f;
+    color:white;
+    border-radius: 20px;
+}
+.fBtn:hover{
+    color: #d9534f;
+    background-color:whitesmoke;
+}
+
+.search {
+    position: relative;
+    margin-top: 100px;
+    left: 0px;
+
+}
+.navbar-default {
+    transition: 800ms ease;
+    background: transparent;
+}
+
+.navbar-default.scrolled {
+    background: rgba(0, 0, 0);
+}
+
+.bar {
+    width: 600px;
+    border: 2px solid blueviolet;
+    border-radius: 20px;
+    padding-right: 30px;
+    padding: 7px;
+    display: block;
+}
+
+.main {
+    height: 100px;
+    width: auto;
+}
+.round{
+    border-radius: 20px;
+
+}
+.base-hover:hover{
+    color:blueviolet;
+    background-color:rgba(62, 0, 133, 0.226);
+    border-radius: 20px;
+    border-bottom: white;
+    
+}
+.nav-link:hover,a:hover {
+   
+    border-radius: 20px;
+    color: blueviolet;
+    border-bottom: white;
+
+}
+.nav{
+    color:white;
+}
+.navbar-brand:hover{
+    background-color: transparent;
+}
+.price{
+    color: red;
+}
+.title{
+    color:black;
+}
+.rel{
+    width: auto;
+}
+.d-inline{
+    display: inline-block;
+}
+

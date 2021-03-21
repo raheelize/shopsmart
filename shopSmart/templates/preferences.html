@@ -1,0 +1,61 @@
+{% extends base %}
+{% block title %}Preferences{% endblock title %}
+
+
+
+{% block body %}
+<style>
+
+</style>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-sm-12 jumbotron animate-bottom my-2 shadow" style="border-radius: 20px; padding: 3%;">
+                <h4 style="color: #000;"><b>Please Choose Your Favourite Categories</b></h4><hr>
+                <form class="category " method="POST" action="/preferences">
+                    <div class="animate-bottom" style="overflow-y: scroll; height: 300px;">
+
+                        {% csrf_token %}
+                        {% for item in categories %}
+                        <div id = "pref_block" class="animate-bottom shadow-sm" style="background-color:lightgray; padding-left: 25px; margin: 3px; border-radius: 20px;">
+                            <input id  = "item_type" type="checkbox" name="item_type" value="{{item.title}}" 
+                            {% if item.title in selected %}checked{% endif %}>
+                            <label id = "label"  class="px-2" for="{{item.title}}">{{item.title}}</label>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                    <div class="container my-3 ">
+                        <a href="/profile" class=" " type="submit">Go to Profile</a>
+                    <button name = "update_btn" class="btn pBtn float-right" type="submit">Update</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                
+                    <div id = "my_pref" class = "mx-4 my-4 ">
+                    <h4 style="color: #000;"><b>Selected Categories</b></h4><hr>
+                       
+                       <div >
+                       {% for item in selected %}
+                       <div  style=" display:inline-block;">
+                           <p class="pBtn px-2 py-1 mx-1 my-1"><i class="fa fa-check"></i> {{item.title}}</p>
+                       </div>
+                       {% endfor %}
+                    </div>
+                      <!-- <ul>
+                       {% for item in selected %}
+                        <li>{{item.title}}</li>
+                       {% endfor %}
+                       </ul>-->
+
+                    </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+{% endblock body %}

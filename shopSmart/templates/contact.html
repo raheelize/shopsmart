@@ -1,0 +1,107 @@
+{% extends base%}
+
+{% block title %}Contact{% endblock title %}
+
+{% block body %}
+
+
+<body style="background-image: url('static/bg.png');">
+<!--Section: Contact v.2-->
+<section class="mb-4 container animate-bottom  ">
+
+    <!--Section heading-->
+    <h2 class="h1-responsive font-weight-bold text-center my-2 animate-bottom">Contact Us</h2>
+    <!--Section description-->
+    <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. <br> Our team will come back to you within
+        a matter of hours to help you.</p>
+
+        <hr>
+    <div class="row" style = "color:black;">
+
+        <!--Grid column-->
+        <div class="col-md-9 mb-md-0 mb-5">
+            <form id="contact-form" name="contact-form" action="/contact" method="POST">
+                {% csrf_token %}
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form ">
+                        <label for="name" class="">Your name</label>
+                        <input type="text" id="name_field" name="name" class="form-control" placeholder = "Enter Your Name Here..." required>
+                        
+                            
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                         <label for="email" class="">Your email</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder = "Enter Your Email Here..." required>
+                           
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+
+               
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-12">
+
+                        <div class="md-form">
+                           <label for="message">Your message</label>
+                            <textarea type="text" id="message" name="message" rows="4" class="form-control md-textarea" placeholder = "Type Your Message Here..." required></textarea>
+                         
+                        </div>
+
+                    </div>
+                </div>
+                <!--Grid row-->
+             <div class="text-center text-md-left">
+                <button class="btn pBtn form-control my-3" type = "submit">Send</button>
+            </div>
+            </form>
+
+           
+            <div class="status"></div>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-3 text-center">
+            <ul class="list-unstyled ">
+                <li><i class="fa fa-home fa-2x"></i>
+                    <p>Quaid I Azam University <br> Islamabad</p>
+                </li>
+                <li><i class="fa fa-phone fa-2x"></i>
+                    <p>+92 123 456 67 890</p>
+                </li>
+                <li><i class="fa fa-envelope fa-2x"></i>
+                    <p>info@shopsmart.com</p>
+                </li>
+            </ul>
+            <hr>
+            <div class="row d-flex justify-content-center">
+                <a href="#"><i class="fa fa-instagram mx-2"></i></a>
+                <a href="#"><i class="fa fa-facebook mx-2"></i></a>
+                <a href="#"><i class="fa fa-twitter mx-2"></i></a>
+            </div>
+        </div>
+        <!--Grid column-->
+
+    </div>
+
+
+<!--Section: Contact v.2-->
+
+</body>
+{% endblock body %}

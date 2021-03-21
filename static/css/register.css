@@ -1,0 +1,48 @@
+.form-control {
+    width: 310px;
+    margin: 3px;
+
+    margin-bottom: 15px;
+}
+
+
+div.form {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    width: 350px;
+    position: relative;
+    margin-top: 0px;
+    margin-right: 0px;
+    float: right;
+
+}
+
+carousel-item.active,
+.carousel-item-next,
+.carousel-item-prev {
+    display: block;
+}
+
+.carousel_block {
+
+    position: relative;
+    margin-top: 100px;
+
+    color: white;
+}
+.btn {
+    background-color: blueviolet;
+    color: white;
+    border-radius: 20px;
+}
+
+.btn:hover {
+    color: blueviolet;
+    background-color: white;
+    border-color: blueviolet;
+}
+.image {
+    width:auto;
+    max-height: 200px;
+}

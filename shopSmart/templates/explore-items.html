@@ -1,0 +1,82 @@
+{% extends "baseRegistered.html" %}
+
+{% block title %}Products{% endblock title %}
+
+{% block body %}
+
+
+<body>
+  <section class=" container text-center shadow">
+    <h1 class="jumbotron-heading" style="color:blueviolet;"><b>{{head}}</b></h1>
+    
+  </section>
+  <main class="animate-bottom">
+    <div class="container py-4">
+      <button type="button" class="btn pBtn  shadow" data-toggle="modal" title="Filter Items"
+        data-target="#filter" style="z-index: 99;"><i class="fa fa-filter "></i> Filter Items</button>
+    </div>
+
+    <div class="album my-3 animate-bottom">
+      <div class="container">
+        <div class="row">
+          {% for item in items %}
+          <div class="col-lg-3 col-md-6 col-sm-12 d-flex justify-content-center">
+            <div class="block shadow">
+
+              <div class="d-flex justify-content-center">
+                <a href="{{item.image_url}}">
+                  <img class="image shadow" src="{{item.image_url}}" alt="{{item.title}}">
+                </a>
+              </div>
+
+              <div class="body">
+                <p class="title" style="color: blueviolet;"><b>{{item.title}}</b></p>
+                <p class="price"><b>PKR-{{item.price}}</b></p>
+
+                <div class="d-flex flex-row-reverse">
+                  <small class="text-muted brand ">{{item.brand}}</small>
+                </div>
+
+                <div>
+                  {% if not request.user.is_authenticated %}
+                  <a href="{{item.item_url}}"><button type="button" class="btn pBtn px-4 form-control">View
+                      Product</button></a>
+                  {% endif %}
+                  {% if request.user.is_authenticated %}
+                  <a href="{{item.item_url}}"><button type="button" class="btn pBtn px-3 rel form-control">View
+                      Product</button></a>
+                  <form action="{{request.path}}" method="POST">
+                    {% csrf_token %}
+                    <input style="display:none;" type="text" name="product_id" value="{{item.item_id}}">
+                    <button type="submit" title="Add To Favorites" class="btn btn-danger fBtn float-right"><i
+                        class="fa fa-heart"></i></button>
+                  </form>
+                  {% endif %}
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+
+
+
+
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+
+  <!-- Placed at the end of the document so the pages load faster -->
+
+  <script src="static/js/slider.js"></script>
+</body>
+
+
+{% endblock body %}

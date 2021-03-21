@@ -1,0 +1,27 @@
+.form-control {
+    width: 310px;
+    margin: 3px;
+    margin-top: 9px;
+    margin-bottom: 15px;
+}
+
+
+div.form {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    position: relative;
+    margin-top: 50px;
+
+}
+.btn {
+    background-color: blueviolet;
+    color: white;
+    border-radius: 20px;
+}
+
+.btn:hover {
+    color: blueviolet;
+    background-color: white;
+    border-color: blueviolet;
+}

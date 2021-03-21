@@ -1,0 +1,126 @@
+body {
+    /*background-image: url('static/bg.png');*/
+    background-color: lightgray;;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+  }
+  form {
+    display: inline;
+  }
+.round{
+    border-radius: 5%;
+}
+  
+
+  .fav {
+    display: inline;
+    color: blueviolet;
+  }
+  .rel {
+    width: auto;
+  }
+  section {
+    background-color: whitesmoke;
+    padding: 20px;
+    color: blueviolet;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+  .text {
+    background-color: white;
+    color: blueviolet;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+  .main{
+    background-color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+#name{
+    border-bottom: 2px solid violet;
+}
+.fav {
+    display: inline;
+    color: blueviolet;
+  }
+  error{
+    color:white;
+    margin:10px;
+  }
+  error a{
+    text-decoration:none;
+    color:white;
+
+  }
+  .message_block{
+    position: absolute;
+    top: 15%;
+    border: 1px solid black;
+    z-index: 1;
+    width: 50%;
+    margin-top: 2%;
+  }
+  #top_btn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 15px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* change password css
+ */
+  body {
+    color: black;
+}
+
+#message {
+    color: #000;
+    position: relative;
+    margin-top: 10px;
+}
+
+#message p {
+    font-size: 12px;
+}
+
+.valid {
+    color: green;
+}
+
+.valid:before {
+    position: relative;
+    left: -35px;
+    content: "✔";
+}
+
+
+.invalid {
+    color: red;
+}
+
+.invalid:before {
+    position: relative;
+    left: -35px;
+    content: "✖";
+}

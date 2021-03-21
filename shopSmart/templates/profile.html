@@ -1,0 +1,109 @@
+{% extends base %}
+
+{% block title %}{{request.user}}- Profile{% endblock title %}
+{% block body %}
+<head>
+
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" media="screen">
+  <link rel="stylesheet" href="static/css/item.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/loader.css">
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body style = "background-image: url('static/bg.png');">
+        {% if  not flag%}
+              <div class="container jumbotron alert-warning">
+                <h4><b>Note:</b> Preferences not set.</h4><hr>
+                <p>Please set up Items <a href="/preferences">Preferences</a> to Personalize you profile.</p>
+              </div>
+        {% endif %}
+      <div id="myBtnContainer" class="filter-nav container py-3 ">
+        <a href="/all_products"><button type="link" class="shadow btn pBtn float-left">All</button></a>
+
+        <div class="d-inline">
+          {% for brand in brands %}
+          <a href="{{request.path}}?brand_query={{brand}}"><button class="shadow btn mx-2 sBtn"
+              name="brand_query">{{brand}}</button></a>
+          {% endfor %}
+        </div>
+
+        <button type="button" class="btn pBtn float-right shadow"  title = "Filter Items" data-toggle="modal" data-target="#filter"><i
+            class="fa fa-filter"></i></button>
+      </div>
+
+      <div class="album my-5 animate-bottom">
+        <div class="container">
+          <div class="row">
+            {% for item in items %}
+            <div class="col-lg-3 col-md-6 col-sm-12 d-flex justify-content-center">
+              <div class="block shadow">
+  
+                <div class="d-flex justify-content-center">
+                  <a href="{{item.image_url}}">
+                    <img class="image shadow" src="{{item.image_url}}" alt="{{item.title}}">
+                  </a>
+                </div>
+    
+                <div class="body">
+                  <p class="title" style="color: blueviolet;"><b>{{item.title}}</b></p>
+                  <p class="price"><b>PKR-{{item.price}}</b></p>
+    
+                  <div class="d-flex flex-row-reverse">
+                    <small class="text-muted brand ">{{item.brand}}</small>
+                  </div>
+    
+                  <div>
+                    {% if not request.user.is_authenticated %}
+                    <a href="{{item.item_url}}"><button type="button" class="btn pBtn px-4 form-control">View
+                        Product</button></a>
+                    {% endif %}
+                    {% if request.user.is_authenticated %}
+                    <a href="{{item.item_url}}"><button type="button" class="btn pBtn px-3 rel form-control">View
+                        Product</button></a>
+                    <form action="{{request.path}}" method="POST">
+                      {% csrf_token %}
+                      <input style="display:none;" type="text" name="product_id" value="{{item.item_id}}">
+                      <button type="submit" title = "Add To Favorites" class="btn btn-danger fBtn float-right"><i class="fa fa-heart"></i></button>
+                    </form>
+                    {% endif %}
+                  </div>
+    
+    
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- Modal -->
+  <div class="modal fade" id="filter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Filter Items</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <script>
+            $("#ex2").slider({});
+
+            // Without JQuery
+            var slider = new Slider('#ex2', {});
+          </script>
+          <b>€ 10</b> <input id="ex2" type="range" class="span2" value="" data-slider-min="10" data-slider-max="1000"
+            data-slider-step="5" data-slider-value="[250,450]" /> <b>€ 1000</b>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn fBtn" data-dismiss="modal">Close</button>
+          <button type="button" class="btn pBtn">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock body %}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    
+    <link rel="icon" href="static/icon.png" type="image" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static '/js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static '/js/popper.min.js' %}"></script>
+    <script src="{% static '/js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="static/css/loader.css">
+    <link rel="stylesheet" href="static/css/register.css">
+    <link rel="stylesheet" href="{% static '/css/dropdown.css' %}">
+
+    <title>Register | ShopSmart</title>
+</head>
+
+<body style="background-color: lightgrey;">
+    <nav class="navbar">
+        <a href="/" class="navbar-brand"><img src="static/logo-bv.png" alt="" height="30" width="auto"></a>
+    </nav>
+    <div class="container row">
+        {% if messages %}
+        {% for  message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert"
+            style="margin-top: 0px; left:50%; z-index: 1;">
+            <strong>{{message}}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="row container-fluid ">
+
+        <div class="col-lg-8 col-md-8">
+            <div class="carousel_block">
+                <div id="carouselContent" class="carousel slide" data-ride="carousel" style="color: blueviolet;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active text-center">
+                            <h4><b>GET THEM ALL AT ONE PLACE</b></h4><br>
+                            <img class="image" src="static/vector.png" alt="">
+                            <p>Search for your favourite items from any brand at one place.</p>
+                        </div>
+                        <div class="carousel-item text-center">
+                            <h4><b>ALERT AND AWARE</b></h4><br>
+                            <img class="image" src="static/vector.png" alt="">
+                            <p>Get Notified whenever any items of interest is available on your favorite brand.<br>
+                                GET'EM FIRST!</p>
+                        </div>
+                        <div class="carousel-item  text-center ">
+                            <h4><b>PERSONALIZED PROFILE</b></h4><br>
+                            <img class="image" src="static/vector.png" alt="">
+                            <p>Get rid of unwanted items, your account provides you items of your <br>Choice and
+                                Interests.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class=" d-flex col-lg-4 col-md-4">
+            <div class=" justify-content-center text-center form" style="border:2px solid blueviolet;">
+                <h4>Sign Up Here</h4>
+                <form action="/register" method='post' class="signup">
+                    {% csrf_token %}
+                    <label for="name" class="sr-only">Name</label>
+                    <input type="text" id="name" class="form-control" placeholder="Name" name="name" required>
+                    <label for="username" class="sr-only">Username</label>
+                    <input type="text" id="username" class="form-control" placeholder="Username" name="username"
+                        required>
+                    <label for="email" class="sr-only">Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="Email" name="email" required>
+                    <label for="contact" class="sr-only">Contact</label>
+                    <input type="tel" id="contact" class="form-control" placeholder="Contact" name="contact" required>
+
+                    <label for="password" class="sr-only">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Password" name="password"
+                        required>
+                    <label for="confirm_pass" class="sr-only">Confirm Password</label>
+                    <input type="password" id="confirm_password" class="form-control" placeholder="Confirm Password"
+                        onkeyup='check()' name="confirm_password" required>
+                    <small id="status" style="display:none; color:red;"></small>
+
+                    <button id="signup" class="btn  pBbtn form-control" type="submit">Sign Up</button>
+                </form>
+                <p>Already Have an Account? <a href="/login">Sign In</a></p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script>
+        var check = function () {
+            if (document.getElementById('password').value ==
+                document.getElementById('confirm_password').value) {
+
+                document.getElementById('status').style.display = 'block';
+                document.getElementById('status').style.color = 'green';
+                document.getElementById('password').style.borderColor = 'green';
+                document.getElementById('confirm_password').style.borderColor = 'green';
+                document.getElementById('status').innerHTML = 'Matched!';
+            } else {
+                document.getElementById('status').style.display = 'block';
+                document.getElementById('status').style.color = 'red';
+                document.getElementById('password').style.borderColor = 'red';
+                document.getElementById('confirm_password').style.borderColor = 'red';
+                document.getElementById('status').innerHTML = 'Password does not Match!';
+
+            }
+        }
+    </script>
+</body>
+
+</html>

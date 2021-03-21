@@ -1,0 +1,43 @@
+.block{
+    background-color: white;
+    border: 2px solid blueviolet;
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 233px;
+    margin: 20px;
+
+}
+.block:hover{
+    background-color: rgb(243, 214, 252);
+}
+
+.image{
+    border-radius: 20px;
+    transition: transform .2s; 
+    margin:0px;
+    display: block;
+    width: auto;
+    width: 200px;
+    height: 250px;
+}
+.image:hover{
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1);
+    border: 3px solid lightcoral;
+}
+.title{
+    font-size: 18px;
+    margin: 0%;
+    margin-top: 5px;
+}
+.price{
+   font-size: 14px;
+   margin: 0%;
+   margin-top: 5px;
+}
+.brand{
+    display: block;
+    margin-bottom: 5px;
+    float: inline-end;
+}

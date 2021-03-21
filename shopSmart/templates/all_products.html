@@ -1,0 +1,124 @@
+{% extends "baseRegistered.html" %}
+
+{% block title %}Products{% endblock title %}
+
+{% block body %}
+
+
+<body>
+  <section class=" container text-center shadow">
+    <h1 class="jumbotron-heading" style="color:blueviolet;"><b>{{head}}</b></h1>
+  </section>
+  <main class="animate-bottom">
+    <div>
+      <div id="myBtnContainer" class="filter-nav container py-3 ">
+        <a href="/all_products"><button type="link" class="shadow btn pBtn float-left">All</button></a>
+        <!--Brands Menu Start-->
+        <div class="d-inline">
+          {% for brand in brands %}
+          <div style="display:inline-block">
+            <a href="{{request.path}}?brand_query={{brand}}"><button class="shadow btn mx-2 sBtn"
+                name="brand_query">{{brand}}</button></a>
+          </div>
+          {% endfor %}
+        </div>
+
+
+
+        <button type="button" class="btn pBtn float-right shadow" data-toggle="modal" title="Filter Items"
+          data-target="#filter"><i class="fa fa-filter "></i></button>
+      </div>
+    </div>
+
+    <div class="album my-5 animate-bottom">
+      <div class="container">
+        <div class="row">
+          {% for item in items %}
+          <div class="col-lg-3 col-md-6 col-sm-12 d-flex justify-content-center">
+            <div class="block shadow">
+
+              <div class="d-flex justify-content-center">
+                <a href="{{item.image_url}}">
+                  <img class="image shadow" src="{{item.image_url}}" alt="{{item.title}}">
+                </a>
+              </div>
+
+              <div class="body">
+                <p class="title" style="color: blueviolet;"><b>{{item.title}}</b></p>
+                <p class="price"><b>PKR-{{item.price}}</b></p>
+
+                <div class="d-flex flex-row-reverse">
+                  <small class="text-muted brand ">{{item.brand}}</small>
+                </div>
+
+                <div>
+                  {% if not request.user.is_authenticated %}
+                  <a href="{{item.item_url}}"><button type="button" class="btn pBtn px-4 form-control">View
+                      Product</button></a>
+                  {% endif %}
+                  {% if request.user.is_authenticated %}
+                  <a href="{{item.item_url}}"><button type="button" class="btn pBtn px-3 rel form-control">View
+                      Product</button></a>
+                  <form action="{{request.path}}" method="POST">
+                    {% csrf_token %}
+                    <input style="display:none;" type="text" name="product_id" value="{{item.item_id}}">
+                    <button type="submit" title="Add To Favorites" class="btn btn-danger fBtn float-right"><i
+                        class="fa fa-heart"></i></button>
+                  </form>
+                  {% endif %}
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+
+
+  <footer class="text-muted">
+    <nav class="d-flex justify-content-center">
+      <ul class="pagination">
+        {%if items.has_previous%}
+        <li class="sBtn"><a class="page-link " href="{{request.path}}?page={{items.previous_page_number}}">Previous</a>
+        </li>
+        {% endif %}
+        {%if not items.has_previous%}
+        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+        {% endif %}
+        <!--<li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+        {% if items.has_next %}
+        {% if not 'brand_query' in request.get_full_path  %}
+        <li class="page-item"><a class="page-link" href="{{request.path}}?page={{items.next_page_number}}">Next</a></li>
+        {% elif 'brand_query' in request.get_full_path  %}
+        <li class="sBtn"><a class="page-link"
+            href=" {{ request.get_full_path }}&&page={{items.next_page_number}}">Next</a></li>
+        {% endif %}
+
+        {% endif %}
+        {% if not items.has_next %}
+        <li class="page-item disabled"><a class="page-link disabled" href="#">Next</a></li>
+        {% endif %}
+
+      </ul>
+    </nav>
+  </footer>
+
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+
+  <!-- Placed at the end of the document so the pages load faster -->
+
+  <script src="static/js/slider.js"></script>
+</body>
+
+
+{% endblock body %}
