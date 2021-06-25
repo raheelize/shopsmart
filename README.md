@@ -12,3 +12,4 @@ selected brands or not. Portal allows customer to choose specific item i.e. trou
 which they are looking for and provide them facility to filter among all the items of their selected 
 brands. Also if there is not anything available of their choice it will notify them whenever it’s 
 available.
+![mainscreen1](https://user-images.githubusercontent.com/78955443/123413782-95e83580-d5cc-11eb-96bd-9c22e3512c83.png)
